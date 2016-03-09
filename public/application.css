@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+    font-family: 'Microsoft Yahei';
+}
+
+h1, p {
+    margin: 0;
+}
+
+a {
+    color: #888;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #555;
+}
+
+.home_header {
+    padding: 1em;
+}
+
+.home_nav {
+    float: right;
+    line-height: 25px;
+}
+
+.home_nav a {
+    margin-left: .5em;
+}
