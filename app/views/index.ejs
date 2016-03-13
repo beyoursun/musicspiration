@@ -7,9 +7,18 @@
         <%= title %>
     </title>
     <link rel="stylesheet" href="/application.css">
+    <link rel="stylesheet" href="/mu/mu.css">
 </head>
 
-<body>
+<body ng-controller="appController">
+    <header class="main_header" ng-class="{sm: headerSm}">
+        <nav class="main_nav">
+            <a href="/signin">登录</a>
+            <span>|</span>
+            <a href="#">注册</a>
+        </nav>
+        <h1 class="main_title">InspirationMU</h1>
+    </header>
 
     <section ng-view></section>
 
@@ -33,8 +42,10 @@
     <script type="text/javascript" src="/users/users.client.module.js"></script>
     <script type="text/javascript" src="/users/services/authentication.client.service.js"></script>
     
-    <script src="/home/home.client.module.js"></script>
-    <script src="/home/home.client.route.js"></script>
+    <script src="/mu/mu.client.module.js"></script>
+    <script src="/mu/mu.client.route.js"></script>
+    <script src="/mu/mu.client.controller.js"></script>
+    <script src="/mu/mu.client.directive.js"></script>
 
     <script type="text/javascript" src="/application.js"></script>
 </body>

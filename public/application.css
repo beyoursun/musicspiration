@@ -1,11 +1,17 @@
 body {
-    margin: 0;
-    font-family: 'Microsoft Yahei';
+    font-family: sans-serif;
+    font-size: 12px;
+    color: #333;
+    overflow-y: scroll;
+    background-color: #f2f2f2;
 }
 
-h1, p {
+body, h1, h2, h3, h4, h5, h6, p, ul, ol {
     margin: 0;
+    padding: 0;
 }
+
+ul, ol { list-style: none; }
 
 a {
     color: #888;
@@ -13,18 +19,61 @@ a {
 }
 
 a:hover {
-    color: #555;
+    color: #333;
 }
 
-.home_header {
-    padding: 1em;
+.main_header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    transition: all .2s;
 }
 
-.home_nav {
+.main_nav {
     float: right;
-    line-height: 25px;
+    line-height: 64px;
+    transition: all .2s;
 }
 
-.home_nav a {
-    margin-left: .5em;
+.main_nav span { color: #ddd; }
+
+.main_title {
+    width: 224px;
+    height: 64px;
+    background-image: url(/img/logo.png);
+    background-size: cover;
+    color: transparent;
+    transition: all .2s;
 }
+
+.main_section {
+    width: 1000px;
+    margin: 120px auto;
+    overflow: hidden;
+}
+
+.main_header.sm { padding: 5px 10px; }
+.main_header.sm .main_title { width: 112px; height: 32px; }
+.main_header.sm .main_nav { line-height: 32px; }
+
+.home_waterfall { padding-top: 84px; }
+.home_gallary { overflow: hidden; }
+.home_waterfall_item { float: left; position: relative; }
+.home_waterfall_item img { width: 100%; }
+.galary_like { position: absolute; top: 10px; left: 10px; width: 30px; height: 30px; border-radius: 2px; background: center no-repeat #DA4A40 url(/img/iconfont-heart.png); transition: all .4s; opacity: 0; transform: translateY(10px); }
+.galary_like:hover { background-color: #e54d43; }
+.home_waterfall_item:hover .galary_like { opacity: 1; transform: translateY(0); }
+
+.home_op { position: fixed; right: 20px; bottom: 0; transition: all .2s; }
+.home_op.hidden { transform: translateY(100%); }
+.home_op_btn { position: relative; display: inline-block; width: 5em; margin: 0 2px; border: 1px solid #eee; background-color: #fff; padding: 25px 0 5px; border-radius: 2px 2px 0 0; text-align: center; }
+.home_op_btn:hover { color: #da4a40; }
+.home_op_btn span { position: absolute; top: 5px; left: 50%; width: 16px; height: 16px; margin-left: -8px; background-image: url(/img/iconfont-top.png); }
+.home_op_btn:hover span { background-image: url(/img/iconfont-top-red.png); }
+.home_op_btn_prev span { transform: rotate(-90deg); }
+.home_op_btn_next span { transform: rotate(90deg); }

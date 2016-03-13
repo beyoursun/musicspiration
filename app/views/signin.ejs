@@ -2,23 +2,44 @@
 <html>
 <head>
 	<title><%= title %></title>
+    <style>
+        body { margin: 0; background-color: #f8f8f8; color: #666; line-height: 2; font-size: 14px; }
+        a { text-decoration: none; color: #888; }
+        a:hover { color: #da4a40; }
+        .form { width: 600px; margin: 50px auto; border: 1px solid #bbb; border-radius: 5px; background-color: #fff; overflow: hidden; }
+        .form_title { padding: 10px; border-bottom: 1px solid #eee; }
+        .form_body { padding: 15px; border-bottom: 1px solid #eee; }
+        .form_footer { padding: 15px; background-color: #f8f8f8; text-align: right; }
+        .form_line { margin-bottom: 15px; }
+        .form_label { line-height: 2; font-weight: bold; }
+        .form_input { width: 100%; padding-left: .5em; padding-right: .5em; box-sizing: border-box; border: 1px solid #eee; border-radius: 3px; background-color: #f8f8f8; line-height: 2.5; }
+        .form_btn { width: 100%; padding: 0 1.5em; line-height: 2.5; border: 0; border-radius: 3px; background-color: #da4a40; color: #fff; font-family: inherit; font-size: inherit; font-weight: bold; cursor: pointer; }
+        .form_btn:hover { background-color: #e54d43; }
+        .logo { width: 224px; height: 64px; margin: 0 auto; background-image: url(/img/logo.png); color: transparent; }
+    </style>
 </head>
 <body>
 	<% for (var i in messages) { %>
 		<div class="flash"><%= messages[i] %></div>
 	<% } %>
-	<form action="/signin" method="post">
-		<div>
-			<label>Username:</label>
-			<input type="text" name="username">
-		</div>
-		<div>
-			<label>Password:</label>
-			<input type="text" name="password">
-		</div>
-		<div>
-			<input type="submit" value="Sign in">
-		</div>
+	<form class="form" action="/signin" method="post">
+        <div class="form_title">
+            <h1 class="logo">InspirationMU</h1>
+        </div>
+        <div class="form_body">
+            <div class="form_line">
+                <label class="form_label">用户名</label>
+                <input class="form_input" type="text" name="username">
+            </div>
+            <div class="form_line">
+                <label class="form_label">密码</label>
+                <input class="form_input" type="text" name="password">
+            </div>
+        </div>
+        <div class="form_footer">
+            <input class="form_btn" type="submit" value="登录">
+            <a href="/signup">新用户注册</a>
+        </div>
 	</form>
 </body>
 </html>
