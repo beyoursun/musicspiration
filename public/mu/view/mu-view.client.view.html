@@ -1,8 +1,48 @@
 <section class="main_section" ng-controller="MuController">
     <div class="mu">
         <header class="mu_header">
-            <a href="">采集</a>
+            <a href="javascript:;" class="mu_info link on">已采集 10</a>
+            <a href="javascript:;" class="mu_info">浏览 96</a>
+            <a href="#" class="mu_info link right">来自 v.qq.com</a>
         </header>
+        <div class="mu_content">
+            <img src="/img/demo/antman-peyton-reed-returns-to-the-edgar-wright-case-and-reveals-new-images-comicsblogfr-1457761068g4kn8-770x1024.jpg" alt="" class="mu_cover">
+            <a href="javascript:;" class="mu_btn" ng-class="{pause: mu.playing, play: !mu.playing}" ng-click="mu.toggle()"></a>
+            <a href="#" class="mu_prev"></a>
+            <a href="#" class="mu_next"></a>
+        </div>
+        <div class="mu_more">
+            <h2 class="mu_title">蚁人插曲</h2>
+            <ul class="mu_tags">
+                <li class="mu_tag"><a href="#">#漫威#</a></li>
+                <li class="mu_tag"><a href="#">#超级英雄#</a></li>
+                <li class="mu_tag"><a href="#">#ant man#</a></li>
+            </ul>
+        </div>
     </div>
-    <div class="muauthor"></div>
+    <div class="muauthor">
+        <div class="muauthor_content" ng-class="{scrolling: author.scrolling}">
+            <div class="muauthor_info">
+                <div class="muauthor_avatar">M</div>
+                <div class="muauthor_right">
+                    <h2>Maan Ali</h2>
+                    <p class="muauthor_time">发表于 2016-3-17 14：00</p>
+                </div>
+            </div>
+            <div>
+                <ul class="muauthor_intros">
+                    <li class="muauthor_intro">
+                        <p class="muauthor_intro_num">176</p>
+                        <p class="muauthor_intro_txt">采集</p>
+                    </li>
+                    <li class="muauthor_intro">
+                        <p class="muauthor_intro_num">102</p>
+                        <p class="muauthor_intro_txt">粉丝</p>
+                    </li>
+                </ul>
+                <a href="javascript:;" class="muauthor_follow on">已关注</a>
+            </div>
+        </div>
+    </div>
+    <audio class="muaudio" id="mu-audio" ng-src="{{mu.src}}"></audio>
 </section>

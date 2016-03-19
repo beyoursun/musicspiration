@@ -2,6 +2,9 @@ angular.module('mu').directive('gallary', function () {
     return {
         template: '<div class="home_gallary" ng-transclude></div>',
         transclude: true,
+        scope: {
+            mus: '=mus'
+        },
         link: function (scope, element, attrs) {
             var maxWidth = parseInt(window.getComputedStyle(element[0]).width); // 容器宽度
             var minHeight; // 建议高度
@@ -32,6 +35,8 @@ angular.module('mu').directive('gallary', function () {
                     index = i;
                 }
             }
+            
+            scope.mus = scope.mus.slice(0, index);
         }
     };
 });

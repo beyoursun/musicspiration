@@ -51,11 +51,7 @@ exports.signup = function (req, res, next) {
 
 		user.provider = 'local';
 
-		console.log('1');
-
 		user.save(function (err) {
-			console.log('2');
-
 			if (err) {
 				var message = getErrorMessage(err);
 

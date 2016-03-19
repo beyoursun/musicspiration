@@ -1,0 +1,89 @@
+<section class="user" ng-controller="UsersController">
+    <div class="user_info">
+        <div class="user_avatar" ng-style="{'background-color': user.avatar.color}">J</div>
+        <h1 class="user_name">justliviu</h1>
+    </div>
+    <nav class="user_nav">
+        <a class="user_nav_item" href="javascript:;" ng-class="{on: type == 1}" ng-click="toType(1)">
+            <span>发表</span>
+            <b>13</b>
+        </a>
+        <a class="user_nav_item" href="javascript:;" ng-class="{on: type == 2}" ng-click="toType(2)">
+            <span>采集</span>
+            <b>24</b>
+        </a>
+        <a class="user_nav_item" href="javascript:;" ng-class="{on: type == 3}" ng-click="toType(3)">
+            <span>关注</span>
+            <b>35</b>
+        </a>
+        <a class="user_nav_item" href="javascript:;" ng-class="{on: type == 4}" ng-click="toType(4)">
+            <span>粉丝</span>
+            <b>46</b>
+        </a>
+    </nav>
+    <div class="user_content">
+        <ul class="home_waterfall" gallary mus="fabiao" ng-show="type == 1">
+            <li class="home_waterfall_item" ng-repeat="mu in fabiao" ng-style="{width: mu.width + 'px', height: mu.height + 'px'}">
+                <a href="" class="galary_cover">
+                    <img ng-src="{{mu.src}}" alt="">
+                </a>
+            </li>
+        </ul>
+        
+        <ul class="home_waterfall" gallary mus="caiji" ng-show="type == 2">
+            <li class="home_waterfall_item" ng-repeat="mu in caiji" ng-style="{width: mu.width + 'px', height: mu.height + 'px'}">
+                <a href="" class="galary_cover">
+                    <img ng-src="{{mu.src}}" alt="">
+                </a>
+            </li>
+        </ul>
+        
+        <ul class="user_follows" ng-show="type == 3">
+            <li class="muauthor_content" ng-class="{scrolling: author.scrolling}" ng-repeat="follow in follows">
+                <div class="muauthor_info">
+                    <div class="muauthor_avatar" ng-bind="follow.nickname[0].toUpperCase()" ng-style="{color: follow.color}"></div>
+                    <div class="muauthor_right">
+                        <h2 ng-bind="follow.nickname"></h2>
+                    </div>
+                </div>
+                <div>
+                    <ul class="muauthor_intros">
+                        <li class="muauthor_intro">
+                            <p class="muauthor_intro_num" ng-bind="follow.like"></p>
+                            <p class="muauthor_intro_txt">采集</p>
+                        </li>
+                        <li class="muauthor_intro">
+                            <p class="muauthor_intro_num" ng-bind="follow.fan"></p>
+                            <p class="muauthor_intro_txt">粉丝</p>
+                        </li>
+                    </ul>
+                    <a href="javascript:;" class="muauthor_follow" ng-class="{on: follow.followed}">{{follow.followed ? '已关注' : '关注'}}</a>
+                </div>
+            </li>
+        </ul>
+        
+        <ul class="user_follows" ng-show="type == 4">
+            <li class="muauthor_content" ng-class="{scrolling: author.scrolling}" ng-repeat="fan in fans">
+                <div class="muauthor_info">
+                    <div class="muauthor_avatar" ng-bind="fan.nickname[0].toUpperCase()" ng-style="{color: fan.color}"></div>
+                    <div class="muauthor_right">
+                        <h2 ng-bind="fan.nickname"></h2>
+                    </div>
+                </div>
+                <div>
+                    <ul class="muauthor_intros">
+                        <li class="muauthor_intro">
+                            <p class="muauthor_intro_num" ng-bind="fan.like"></p>
+                            <p class="muauthor_intro_txt">采集</p>
+                        </li>
+                        <li class="muauthor_intro">
+                            <p class="muauthor_intro_num" ng-bind="fan.fan"></p>
+                            <p class="muauthor_intro_txt">粉丝</p>
+                        </li>
+                    </ul>
+                    <a href="javascript:;" class="muauthor_follow" ng-class="{on: fan.followed}">{{fan.followed ? '已关注' : '关注'}}</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>

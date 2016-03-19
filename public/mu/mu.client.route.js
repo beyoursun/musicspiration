@@ -3,6 +3,9 @@ angular.module('mu').config(['$routeProvider', function ($routeProvider) {
         .when('/mus', {
             templateUrl: '/mu/view/mu-list.client.view.html'
         })
+        .when('/mus/create', {
+            templateUrl: '/mu/view/mu-create.client.view.html'
+        })
         .when('/mus/:muId', {
             templateUrl: '/mu/view/mu-view.client.view.html'
         })

@@ -8,16 +8,29 @@
     </title>
     <link rel="stylesheet" href="/application.css">
     <link rel="stylesheet" href="/mu/mu.css">
+    <link rel="stylesheet" href="/users/user.css">
 </head>
 
 <body ng-controller="appController">
     <header class="main_header" ng-class="{sm: headerSm}">
-        <nav class="main_nav">
+        <nav class="main_nav" ng-show="false">
             <a href="/signin">登录</a>
             <span>|</span>
             <a href="#">注册</a>
         </nav>
-        <h1 class="main_title">InspirationMU</h1>
+        <nav class="main_nav">
+            <a href="/#!/mus/create">发表</a>
+            <span>|</span>
+            <a href="/#!/users/mine">个人中心</a>
+            <span>|</span>
+            <a href="#">退出</a>
+        </nav>
+        <div class="main_player" ng-show="player.mu">
+            <a href="javascript:;" class="main_player_btn" ng-class="{play: !player.playing, pause: player.playing}" ng-click="player.toggle(player.mu)"></a>
+            <span ng-bind="player.mu.title"></span>
+            <audio ng-src="{{player.mu.music}}" id="main-audio"></audio>
+        </div>
+        <a href="/#!/"><h1 class="main_title">InspirationMU</h1></a>
     </header>
 
     <section ng-view></section>
@@ -40,6 +53,8 @@
     <script type="text/javascript" src="/example/config/example.client.routes.js"></script>-->
 
     <script type="text/javascript" src="/users/users.client.module.js"></script>
+    <script type="text/javascript" src="/users/controllers/users.client.controller.js"></script>
+    <script type="text/javascript" src="/users/config/users.client.routes.js"></script>
     <script type="text/javascript" src="/users/services/authentication.client.service.js"></script>
     
     <script src="/mu/mu.client.module.js"></script>
