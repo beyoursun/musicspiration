@@ -56,16 +56,19 @@ exports.signup = function (req, res, next) {
 				var message = getErrorMessage(err);
 
 				req.flash('error', message);
-				return res.redirect('/signup');
+				// return res.redirect('/signup');
+                return res.json({error: message});
 			}
 
 			req.login(user, function (err) {
 				if (err) return next(err);
-				return res.redirect('/');
+				// return res.redirect('/');
+                return res.json({success: true});
 			});
 		});
 	} else {
-		return res.redirect('/');
+		// return res.redirect('/');
+        return res.json({success: true});
 	}
 };
 

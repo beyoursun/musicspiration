@@ -12,7 +12,10 @@ angular.element(document).ready(function () {
 	angular.bootstrap(document, [mainApplicationModuleName]);
 });
 
-angular.module(mainApplicationModuleName).controller('appController', ['$scope', '$timeout', function ($scope, $timeout) {
+angular.module(mainApplicationModuleName).controller('appController', ['$scope', '$timeout', 'Authentication', function ($scope, $timeout, Authentication) {
+    // 是否登录
+    $scope.authentication = Authentication;
+    
     $scope.headerSm = false; // 头部变小
     $scope.opHidden = true;
     

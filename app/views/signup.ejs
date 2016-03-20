@@ -18,31 +18,32 @@
         .logo { width: 224px; height: 64px; margin: 0 auto; background-image: url(/img/logo.png); color: transparent; }
     </style>
 </head>
-<body>
-	<% for (var i in messages) { %>
+<body ng-app="users" ng-controller="SignupController">
+	<!--<% for (var i in messages) { %>
 		<div class="flash"><%= messages[i] %></div>
-	<% } %>
+	<% } %>-->
     
-	<form class="form" action="/signup" method="post">
+	<!--<form class="form" action="/signup" method="post">-->
+    <form class="form" ng-submit="submit()">
         <div class="form_title">
             <h1 class="logo">InspirationMU</h1>
         </div>
         <div class="form_body">
             <div class="form_line">
                 <label class="form_label">用户名</label>
-                <input class="form_input" type="text" name="username">
+                <input class="form_input" type="text" ng-model="username">
             </div>
             <div class="form_line">
                 <label class="form_label">邮箱</label>
-                <input class="form_input" type="text" name="email">
+                <input class="form_input" type="email" ng-model="email">
             </div>
             <div class="form_line">
                 <label class="form_label">密码</label>
-                <input class="form_input" type="text" name="password">
+                <input class="form_input" type="password" ng-model="password">
             </div>
             <div class="form_line">
-                <label class="form_label">确认密码</label>
-                <input class="form_input" type="text" name="confirm_password">
+                <label class="form_label" ng-click="submit()">确认密码</label>
+                <input class="form_input" type="password" ng-model="confirm_password">
             </div>
         </div>
 		<div class="form_footer">
@@ -50,5 +51,9 @@
             <a class="form_link" href="/signin">已有账号？请登录</a>
 		</div>
 	</form>
+    
+    <script src="/lib/angular/angular.js"></script>
+    <script src="/users/users.client.module.js"></script>
+    <script src="/users/controllers/signup.client.controller.js"></script>
 </body>
 </html>
