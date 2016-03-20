@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var indexServerRoutes = require('../app/routes/index.server.routes');
 var userServerRoutes = require('../app/routes/user.server.routes');
 var articlesServerRoutes = require('../app/routes/articles.server.routes');
+var musServerRoutes = require('../app/routes/mus.server.routes');
 var session = require('express-session');
 var flash = require('connect-flash');
 var passport = require('passport');
@@ -42,6 +43,7 @@ module.exports = function() {
   indexServerRoutes(app);
   userServerRoutes(app);
   articlesServerRoutes(app);
+  musServerRoutes(app);
 
   // 静态文件服务
   app.use(express.static('./public'));
