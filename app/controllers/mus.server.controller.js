@@ -1,5 +1,6 @@
 var formidable = require('formidable'),
-    fs = require('fs');
+    fs = require('fs'),
+    sizeOf = require('image-size');
 
 exports.create = function(req, res) {
     var form = formidable.IncomingForm();
@@ -9,17 +10,38 @@ exports.create = function(req, res) {
     form.maxFieldsSize = 2 * 1024 * 1024;
 
     form.parse(req, function(err, fields, files) {
-        console.log(err);
-        
         if (err) {
             return res.json({ error: err });
         }
-        
-        console.log('form');
-        console.log(fields);
-        console.log(files);
+
+        var coverExtName = ''; // 后缀名
+
+        switch (files.cover.type) {
+            case 'image/pjpeg':
+                coverExtName = 'jpg';
+                break;
+            case 'image/jpeg':
+                coverExtName = 'jpg';
+                break;
+            case 'image/png':
+                coverExtName = 'png';
+                break;
+            case 'image/x-png':
+                coverExtName = 'png';
+                break;
+        }
+
+        if (coverExtName.length == 0) {
+            return res.json({ error: '封面只支持png和jpg格式图片' });
+        }
+
+        var dimensions = sizeOf(files.cover.path);
+        var newPath = files.cover.path.split('.')[0] + '@' + dimensions.width + 'x' + dimensions.height + '.' + coverExtName;
+
+        fs.renameSync(files.cover.path, newPath);
+        // console.log(dimensions.width, dimensions.height);
+        // console.log('form');
     });
 
-    console.log('body');
-    console.log(req.body);
+    res.json({ success: true });
 };
