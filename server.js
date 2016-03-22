@@ -1,4 +1,5 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+process.env.DIRNAME = __dirname;
 
 var db = require('./config/mongoose')();
 var express = require('./config/express');

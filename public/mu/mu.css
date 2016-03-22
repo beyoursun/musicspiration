@@ -35,6 +35,8 @@
     text-align: center;
 }
 
+.mu_content video { width: 100%; }
+
 .mu_cover { max-width: 100%; }
 
 .mu_btn {
@@ -78,9 +80,25 @@
     background-image: url(/img/iconfont-next.png);    
 }
 
-.mu_more { padding: 25px; }
+.mu_more {
+    position: relative;
+    padding: 25px;
+}
 
 .mu_title { margin-bottom: 10px; }
+
+.mu_download {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    padding-left: 27px;
+    line-height: 27px;
+    background: 5px center/16px no-repeat url(/img/iconfont-download.png);
+    transition: all .2s;
+    opacity: .5;
+}
+
+.mu_download:hover { opacity: .8; }
 
 .mu_tag {
     display: inline-block;

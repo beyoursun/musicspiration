@@ -1,6 +1,7 @@
 var formidable = require('formidable'),
     fs = require('fs'),
-    sizeOf = require('image-size');
+    sizeOf = require('image-size'),
+    url = require('url');
 
 exports.create = function(req, res) {
     var form = formidable.IncomingForm();
@@ -44,4 +45,9 @@ exports.create = function(req, res) {
     });
 
     res.json({ success: true });
+};
+
+exports.down = function(req, res) {
+    console.log(process.env.DIRNAME + '/public' + req.query.url);
+    res.download(process.env.DIRNAME + '/public' + req.query.url);
 };
