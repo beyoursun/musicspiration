@@ -31,9 +31,19 @@
             <audio ng-src="{{player.mu.music}}" id="main-audio"></audio>
         </div>
         <a href="/#!/"><h1 class="main_title">InspirationMU</h1></a>
+        <nav class="main_nav left">
+            <a href="javascript:;">发现</a>
+            <span>|</span>
+            <a href="javascript:;">搜索</a>
+        </nav>
     </header>
 
     <section ng-view></section>
+
+    <div class="main_search">
+        <textarea placeholder="search"></textarea>
+        <a href="javascript:;"></a>
+    </div>
 
     <script type="text/javascript">
         window.user = <%- user || 'null' %>;
