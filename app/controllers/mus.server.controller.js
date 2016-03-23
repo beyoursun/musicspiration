@@ -48,6 +48,5 @@ exports.create = function(req, res) {
 };
 
 exports.down = function(req, res) {
-    console.log(process.env.DIRNAME + '/public' + req.query.url);
     res.download(process.env.DIRNAME + '/public' + req.query.url);
 };
