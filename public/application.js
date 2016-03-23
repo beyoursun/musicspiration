@@ -19,6 +19,13 @@ angular.module(mainApplicationModuleName).controller('appController', ['$scope',
     $scope.headerSm = false; // 头部变小
     $scope.opHidden = true;
     
+    // 搜索
+    $scope.search = {};
+    $scope.search.showed = false;
+    $scope.search.toggle = function () {
+        $scope.search.showed = !$scope.search.showed;
+    };
+    
     // 全局播放器
     $scope.player = {};
     $scope.player.audio = document.getElementById('main-audio');
