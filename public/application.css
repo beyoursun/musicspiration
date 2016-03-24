@@ -130,6 +130,32 @@ a:hover {
 
 .main_search a:hover { opacity: 1; }
 
+/*发现*/
+.main_discover {
+    position: absolute;
+    top: 110%;
+    left: 170px;
+    width: 32em;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 2px;
+    font-size: 14px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+}
+
+.main_discover_item { float: left; }
+
+.main_discover_item a {
+    display: block;
+    width: 8em;
+    padding: 10px;
+    border-radius: 2px;
+    box-sizing: border-box;
+    transition: all .2s;
+}
+
+.main_discover_item a:hover { background-color: #eee; }
+
 .home_waterfall { padding-top: 84px; }
 .home_gallary { overflow: hidden; }
 .home_waterfall_item { float: left; position: relative; }

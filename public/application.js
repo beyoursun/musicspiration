@@ -26,6 +26,13 @@ angular.module(mainApplicationModuleName).controller('appController', ['$scope',
         $scope.search.showed = !$scope.search.showed;
     };
     
+    // 发现
+    $scope.discover = {};
+    $scope.discover.showed = false;
+    $scope.discover.toggle = function () {
+        $scope.discover.showed = !$scope.discover.showed;
+    };
+    
     // 全局播放器
     $scope.player = {};
     $scope.player.audio = document.getElementById('main-audio');

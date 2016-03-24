@@ -29,6 +29,12 @@
     color: #d9746c;
 }
 
+.mu_share {
+    position: absolute;
+    top: 100%;
+    left: 0;
+}
+
 .mu_content {
     position: relative;
     line-height: 0;
