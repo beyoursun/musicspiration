@@ -3,33 +3,7 @@
         <header class="mu_header">
             <a href="javascript:;" class="mu_info link on">已采集 10</a>
             <a href="javascript:;" class="mu_info">浏览 96</a>
-            <a href="javascript:;" class="mu_info link">
-                分享
-                <div class="mu_share">
-                    <script type="text/javascript">
-                    (function(){
-                    var p = {
-                    url:location.href, /*获取URL，可加上来自分享到QQ标识，方便统计*/
-                    desc:'', /*分享理由(风格应模拟用户对话),支持多分享语随机展现（使用|分隔）*/
-                    title:'', /*分享标题(可选)*/
-                    summary:'', /*分享摘要(可选)*/
-                    pics:'', /*分享图片(可选)*/
-                    flash: '', /*视频地址(可选)*/
-                    site:'', /*分享来源(可选) 如：QQ分享*/
-                    style:'101',
-                    width:96,
-                    height:24
-                    };
-                    var s = [];
-                    for(var i in p){
-                    s.push(i + '=' + encodeURIComponent(p[i]||''));
-                    }
-                    document.write(['<a class="qcShareQQDiv" href="http://connect.qq.com/widget/shareqq/index.html?',s.join('&'),'" target="_blank">分享到QQ</a>'].join(''));
-                    })();
-                    </script>
-                    <script src="http://connect.qq.com/widget/loader/loader.js" widget="shareqq" charset="utf-8"></script>
-                </div>
-            </a>
+            <div class="mu_share" ng-include="'/mu/view/share.client.view.html'"></div>
             <a href="#" class="mu_info link right">来自 v.qq.com</a>
         </header>
         <div class="mu_content">
@@ -46,6 +20,42 @@
                 <li class="mu_tag"><a href="#">#漫威#</a></li>
                 <li class="mu_tag"><a href="#">#超级英雄#</a></li>
                 <li class="mu_tag"><a href="#">#ant man#</a></li>
+            </ul>
+        </div>
+        <div class="mu_comment">
+            <div class="mu_comment_box">
+                <textarea rows="5" placeholder="我也要说"></textarea>
+                <a href="javascript">评论</a>
+            </div>
+            <div class="mu_sofa" ng-show="false">
+                <i class="iconfont">&#xe602;</i>
+                快来抢占沙发吧~
+            </div>
+            <ul>
+                <li class="mu_media">
+                    <div class="mu_media_left">C</div>
+                    <div class="mu_media_body">
+                        <h4>comment title</h4>
+                        <span>2016-3-26 11:33</span>
+                        This is a comment content.
+                    </div>
+                </li>
+                <li class="mu_media">
+                    <div class="mu_media_left">C</div>
+                    <div class="mu_media_body">
+                        <h4>comment title</h4>
+                        <span>2016-3-26 11:33</span>
+                        This is a comment content.This is a comment content.This is a comment content.This is a comment content.
+                    </div>
+                </li>
+                <li class="mu_media">
+                    <div class="mu_media_left">C</div>
+                    <div class="mu_media_body">
+                        <h4>comment title</h4>
+                        <span>2016-3-26 11:33</span>
+                        This is a comment content.
+                    </div>
+                </li>
             </ul>
         </div>
     </div>
@@ -75,26 +85,3 @@
     </div>
     <audio class="muaudio" id="mu-audio" ng-src="{{mu.src}}"></audio>
 </section>
-
-                    <script type="text/javascript">
-                    (function(){
-                    var p = {
-                    url:location.href, /*获取URL，可加上来自分享到QQ标识，方便统计*/
-                    desc:'', /*分享理由(风格应模拟用户对话),支持多分享语随机展现（使用|分隔）*/
-                    title:'', /*分享标题(可选)*/
-                    summary:'', /*分享摘要(可选)*/
-                    pics:'', /*分享图片(可选)*/
-                    flash: '', /*视频地址(可选)*/
-                    site:'', /*分享来源(可选) 如：QQ分享*/
-                    style:'101',
-                    width:96,
-                    height:24
-                    };
-                    var s = [];
-                    for(var i in p){
-                    s.push(i + '=' + encodeURIComponent(p[i]||''));
-                    }
-                    document.write(['<a class="qcShareQQDiv" href="http://connect.qq.com/widget/shareqq/index.html?',s.join('&'),'" target="_blank">分享到QQ</a>'].join(''));
-                    })();
-                    </script>
-                    <script src="http://connect.qq.com/widget/loader/loader.js" widget="shareqq" charset="utf-8"></script>

@@ -211,3 +211,34 @@ angular.module('mu').controller('MuController', ['$scope', function ($scope) {
         document.body.scrollTop = 0;
     };
 }]);
+
+// mu创建控制器
+angular.module('mu').controller('MuCreateController', ['$scope', function ($scope) {
+    $scope.cover = '/img/upload.png';
+    $scope.type = 'vedio';
+    $scope.src = null;
+    
+    // 上传封面
+    $scope.uploadCover = function (e) {
+        $scope.$apply(function () {
+            $scope.cover = URL.createObjectURL(e.target.files[0]);
+        });
+    };
+    
+    // 上传音乐，视频
+    $scope.uploadSrc = function (e) {
+        var file = e.target.files[0];
+        $scope.$apply(function () {
+            if (file.type.match(/mp4/)) {
+                $scope.type = 'vedio';
+            } else if (file.type.match(/mp3/)) {
+                $scope.type = 'audio';
+            }
+            $scope.src = file.name;
+        });
+    };
+}]);
+
+angular.module('mu').config(['$compileProvider', function ($compileProvider) {
+    $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|local|data|blob):/);
+}]);

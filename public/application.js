@@ -29,8 +29,12 @@ angular.module(mainApplicationModuleName).controller('appController', ['$scope',
     // 发现
     $scope.discover = {};
     $scope.discover.showed = false;
-    $scope.discover.toggle = function () {
+    $scope.discover.toggle = function ($event) {
+        $event.stopPropagation();
         $scope.discover.showed = !$scope.discover.showed;
+    };
+    $scope.discover.hide = function () {
+        $scope.discover.showed = false;
     };
     
     // 全局播放器
@@ -82,5 +86,7 @@ angular.module(mainApplicationModuleName).controller('appController', ['$scope',
                 $scope.opHidden = true;
             });
         }
+        
+        $scope.discover.showed = false;
     });
 }]);

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/users/user.css">
 </head>
 
-<body ng-controller="appController">
+<body ng-controller="appController" ng-click="discover.hide()">
     <header class="main_header" ng-class="{sm: headerSm}">
         <nav class="main_nav" ng-show="!authentication.user">
             <a href="/signin">登录</a>
@@ -32,36 +32,39 @@
         </div>
         <a href="/#!/"><h1 class="main_title">InspirationMU</h1></a>
         <nav class="main_nav left">
-            <a href="javascript:;" ng-click="discover.toggle()">发现</a>
-            <span>|</span>
-            <a href="javascript:;" ng-click="search.toggle()">搜索</a>
+            <a class="main_nav_discover" href="javascript:;" ng-click="discover.toggle($event)">
+                发现<i class="iconfont">&#xe600;</i>
+                <ul class="main_discover" ng-class="{showed: discover.showed}">
+                    <li class="main_discover_item">流行<span>10</span></li>
+                    <li class="main_discover_item">摇滚<span>10</span></li>
+                    <li class="main_discover_item">民谣<span>10</span></li>
+                    <li class="main_discover_item">电子<span>10</span></li>
+                    <li class="main_discover_item on">舞曲<span>10</span></li>
+                    <li class="main_discover_item">说唱<span>10</span></li>
+                    <li class="main_discover_item">轻音乐<span>10</span></li>
+                    <li class="main_discover_item">爵士<span>10</span></li>
+                    <li class="main_discover_item">乡村<span>10</span></li>
+                    <li class="main_discover_item">R&B/Soul<span>10</span></li>
+                    <li class="main_discover_item">古典<span>10</span></li>
+                    <li class="main_discover_item">民族<span>10</span></li>
+                    <li class="main_discover_item">英伦<span>10</span></li>
+                    <li class="main_discover_item">金属<span>10</span></li>
+                    <li class="main_discover_item">朋克<span>10</span></li>
+                    <li class="main_discover_item">蓝调<span>10</span></li>
+                    <li class="main_discover_item">雷鬼<span>10</span></li>
+                    <li class="main_discover_item">世界音乐<span>10</span></li>
+                    <li class="main_discover_item">拉丁<span>10</span></li>
+                    <li class="main_discover_item">另类/独立<span>10</span></li>
+                    <li class="main_discover_item">New Age<span>10</span></li>
+                    <li class="main_discover_item">古风<span>10</span></li>
+                    <li class="main_discover_item">后摇<span>10</span></li>
+                    <li class="main_discover_item">Bossa Nova<span>10</span></li>
+                </ul>
+            </a>
+            <a class="main_nav_search" href="javascript:;" ng-click="search.toggle()">
+                <i class="iconfont">&#xe601;</i>搜索
+            </a>
         </nav>
-        <ul class="main_discover" ng-show="discover.showed">
-            <li class="main_discover_item"><a href="">流行</a></li>
-            <li class="main_discover_item"><a href="">摇滚</a></li>
-            <li class="main_discover_item"><a href="">民谣</a></li>
-            <li class="main_discover_item"><a href="">电子</a></li>
-            <li class="main_discover_item"><a href="">舞曲</a></li>
-            <li class="main_discover_item"><a href="">说唱</a></li>
-            <li class="main_discover_item"><a href="">轻音乐</a></li>
-            <li class="main_discover_item"><a href="">爵士</a></li>
-            <li class="main_discover_item"><a href="">乡村</a></li>
-            <li class="main_discover_item"><a href="">R&B/Soul</a></li>
-            <li class="main_discover_item"><a href="">古典</a></li>
-            <li class="main_discover_item"><a href="">民族</a></li>
-            <li class="main_discover_item"><a href="">英伦</a></li>
-            <li class="main_discover_item"><a href="">金属</a></li>
-            <li class="main_discover_item"><a href="">朋克</a></li>
-            <li class="main_discover_item"><a href="">蓝调</a></li>
-            <li class="main_discover_item"><a href="">雷鬼</a></li>
-            <li class="main_discover_item"><a href="">世界音乐</a></li>
-            <li class="main_discover_item"><a href="">拉丁</a></li>
-            <li class="main_discover_item"><a href="">另类/独立</a></li>
-            <li class="main_discover_item"><a href="">New Age</a></li>
-            <li class="main_discover_item"><a href="">古风</a></li>
-            <li class="main_discover_item"><a href="">后摇</a></li>
-            <li class="main_discover_item"><a href="">Bossa Nova</a></li>
-        </ul>
     </header>
 
     <section ng-view></section>
@@ -74,6 +77,8 @@
     <script type="text/javascript">
         window.user = <%- user || 'null' %>;
     </script>
+
+    <script src="/lib/jquery/dist/jquery.js"></script>
 
     <script type="text/javascript" src="/lib/angular/angular.js"></script>
     <script type="text/javascript" src="/lib/angular-route/angular-route.js"></script>
@@ -92,7 +97,7 @@
     <script type="text/javascript" src="/users/controllers/users.client.controller.js"></script>
     <script type="text/javascript" src="/users/config/users.client.routes.js"></script>
     <script type="text/javascript" src="/users/services/authentication.client.service.js"></script>
-    
+
     <script src="/mu/mu.client.module.js"></script>
     <script src="/mu/mu.client.route.js"></script>
     <script src="/mu/mu.client.controller.js"></script>

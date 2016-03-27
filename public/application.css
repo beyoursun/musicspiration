@@ -1,5 +1,15 @@
+@font-face {
+    font-family: 'iconfont';
+    src: url('//at.alicdn.com/t/font_1459069981_1480856.eot'); /* IE9*/
+    src: url('//at.alicdn.com/t/font_1459069981_1480856.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('//at.alicdn.com/t/font_1459069981_1480856.woff') format('woff'), /* chrome、firefox */
+    url('//at.alicdn.com/t/font_1459069981_1480856.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('//at.alicdn.com/t/font_1459069981_1480856.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+                    
+
 body {
-    font-family: -webkit-pictograph, sans-serif;
+    font-family: "Microsoft Yahei", sans-serif;
     font-size: 12px;
     color: #333;
     line-height: 1.5;
@@ -23,6 +33,13 @@ a:hover {
     color: #333;
 }
 
+
+.iconfont {
+    font-family: "iconfont";
+    font-size: 16px;
+    font-style: normal;
+}
+
 .main_header {
     position: fixed;
     top: 0;
@@ -37,12 +54,32 @@ a:hover {
 
 .main_nav {
     float: right;
-    margin-left: 50px;
-    line-height: 64px;
+    margin: 16px 0 16px 50px;
+    line-height: 32px;
     transition: all .2s;
 }
+.main_nav.left {
+    float: left;
+    margin-left: 10px;
+}
 
-.main_nav.left { float: left; }
+.main_nav a { display: inline-block; }
+.main_nav_discover {
+    position: relative;
+    padding: 0 10px 0 15px;
+    background-color: #eee;
+    border-radius: 2px;
+}
+.main_nav_search {
+    width: 391px;
+    background-color: #f8f8f8;
+    border: 1px solid #eee;
+    border-radius: 2px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.main_nav a .iconfont { vertical-align: -2px; }
 
 .main_nav span {
     margin: 0 5px;
@@ -55,7 +92,7 @@ a:hover {
     height: 64px;
     background-image: url(/img/logo.png);
     background-size: cover;
-    color: transparent;
+    font-size: 0;
     transition: all .2s;
 }
 
@@ -92,7 +129,7 @@ a:hover {
 
 .main_header.sm { padding: 5px 10px; }
 .main_header.sm .main_title { width: 112px; height: 32px; }
-.main_header.sm .main_nav { line-height: 32px; }
+.main_header.sm .main_nav { margin-top: 0; margin-bottom: 0; }
 .main_header.sm .main_player { margin: 0; }
 
 /*搜索框*/
@@ -133,29 +170,69 @@ a:hover {
 /*发现*/
 .main_discover {
     position: absolute;
-    top: 110%;
-    left: 170px;
-    width: 32em;
-    padding: 10px;
+    top: 42px;
+    left: 0;
+    width: 33em;
     background-color: #fff;
     border-radius: 2px;
     font-size: 14px;
+    color: #555;
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    transition: all .2s;
+    transform: translateY(10px);
+    opacity: 0;
+    pointer-events: none;
+}
+.main_discover.showed {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
 }
 
-.main_discover_item { float: left; }
-
-.main_discover_item a {
-    display: block;
-    width: 8em;
-    padding: 10px;
-    border-radius: 2px;
+.main_discover_item {
+    float: left;
+    position: relative;
+    width: 11em;
+    padding: 5px 10px;
     box-sizing: border-box;
     transition: all .2s;
 }
+.main_discover_item.on {
+    color: #da4a40;
+    background-color: #f8f8f8;
+}
+.main_discover_item:hover,
+.main_discover_item.on:hover { background-color: #f2f2f2; }
 
-.main_discover_item a:hover { background-color: #eee; }
+.main_discover_item span {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    line-height: 28px;
+    padding: 0 10px;
+    margin: -14px 0 0 0;
+    border-radius: 4px;
+    background-color: #ddd;
+    color: #666;
+    font-size: 12px;
+}
+.main_discover_item.on span {
+    color: #fff;
+    background-color: #da4a40;
+}
 
+.main_discover_item span:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    border: 5px solid transparent;
+    border-right-color: #ddd;
+    margin-top: -5px;
+}
+.main_discover_item.on span:before { border-right-color: #da4a40; }
+
+/*等高瀑布流*/
 .home_waterfall { padding-top: 84px; }
 .home_gallary { overflow: hidden; }
 .home_waterfall_item { float: left; position: relative; }
@@ -189,7 +266,13 @@ a:hover {
 .form_footer { padding: 15px; background-color: #f8f8f8; text-align: right; }
 .form_line { margin-bottom: 15px; }
 .form_label { display: block; line-height: 2; font-weight: bold; }
-.form_input { width: 100%; padding-left: .5em; padding-right: .5em; box-sizing: border-box; border: 1px solid #eee; border-radius: 3px; background-color: #f8f8f8; line-height: 2.5; }
+.form_input { display: block; width: 100%; padding-left: .5em; padding-right: .5em; box-sizing: border-box; border: 1px solid #eee; border-radius: 3px; background-color: #f8f8f8; line-height: 2.5; overflow: hidden; }
+.form_input.clickable { cursor: pointer; }
+.form_input.nopadding { padding: 0; }
+.form_input.upload_src { text-align: center; color: #bbb; padding: 50px 0; }
+.form_input.upload_src.on { color: #da4a40; }
+.form_input.upload_src .iconfont { display: block; font-size: 48px; line-height: 1; }
+.form_input img { display: block; max-width: 100%; max-height: 500px; margin: auto; }
 .form_btn { width: 100%; padding: 0 1.5em; line-height: 2.5; border: 0; border-radius: 3px; background-color: #da4a40; color: #fff; font-family: inherit; font-size: inherit; font-weight: bold; cursor: pointer; }
 .form_btn:hover { background-color: #e54d43; }
 .logo { width: 224px; height: 64px; margin: 0 auto; background-image: url(/img/logo.png); color: transparent; }
