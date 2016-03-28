@@ -15,6 +15,9 @@ exports.create = function(req, res) {
             return res.json({ error: err });
         }
 
+        console.log(fields);
+        console.log(files);
+
         var coverExtName = ''; // 后缀名
 
         switch (files.cover.type) {

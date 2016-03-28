@@ -213,15 +213,14 @@ angular.module('mu').controller('MuController', ['$scope', function ($scope) {
 }]);
 
 // mu创建控制器
-angular.module('mu').controller('MuCreateController', ['$scope', function ($scope) {
-    $scope.cover = '/img/upload.png';
+angular.module('mu').controller('MuCreateController', ['$scope', 'Mus', function ($scope, Mus) {
     $scope.type = 'vedio';
-    $scope.src = null;
     
     // 上传封面
     $scope.uploadCover = function (e) {
         $scope.$apply(function () {
-            $scope.cover = URL.createObjectURL(e.target.files[0]);
+            $scope.cover = e.target.files[0];
+            $scope.coverURL = URL.createObjectURL($scope.cover);
         });
     };
     
@@ -234,8 +233,21 @@ angular.module('mu').controller('MuCreateController', ['$scope', function ($scop
             } else if (file.type.match(/mp3/)) {
                 $scope.type = 'audio';
             }
-            $scope.src = file.name;
+            $scope.src = file;
         });
+    };
+    
+    // 创建mu
+    $scope.create = function () {
+        var mu = new Mus({
+            title: this.title,
+            cover: this.cover,
+            src: this.src,
+            tags: this.tags.split('#'),
+            from: this.from
+        });
+        
+        mu.$save();
     };
 }]);
 
