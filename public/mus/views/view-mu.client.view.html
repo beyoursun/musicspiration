@@ -1,15 +1,16 @@
-<section class="main_section" ng-controller="ViewMuController" ng-init="findOne()">
+<section class="main_section" ng-controller="ViewMuController" ng-init="findOne();updatePv()">
     <div class="mu">
         <header class="mu_header">
             <a href="javascript:;" class="mu_info link on">已采集 10</a>
-            <a href="javascript:;" class="mu_info">浏览 96</a>
+            <a href="javascript:;" class="mu_info">浏览 {{mu.pv}}</a>
             <div class="mu_share" ng-include="'/mus/views/share-mu.client.view.html'"></div>
             <a class="mu_info link right" target="_blank" ng-href="{{mu.from}}">来自 {{mu.from.split('/')[2]}}</a>
         </header>
         <div class="mu_content">
             <video class="mu_vedio" controls ng-src="{{mu.src}}" ng-show="mu.type == 'video'"></video>
             <img alt="" class="mu_cover" ng-src="{{mu.cover}}" ng-show="mu.type == 'audio'">
-            <a href="javascript:;" class="mu_btn" ng-show="mu.type == 'audio'" ng-class="{pause: player.playing, play: !player.playing}" ng-click="player.toggle()"></a>
+            <a href="javascript:;" class="mu_btn" ng-show="mu.type == 'audio'" ng-class="{pause: player.playing, play: !player.playing}"
+            ng-click="player.toggle()"></a>
             <a href="#" class="mu_prev"></a>
             <a href="#" class="mu_next"></a>
         </div>
@@ -28,32 +29,29 @@
                 <a href="javascript">评论</a>
             </div>
             <div class="mu_sofa">
-                <i class="iconfont">&#xe602;</i>
-                快来抢占沙发吧~
+                <i class="iconfont">&#xe602;</i> 快来抢占沙发吧~
             </div>
             <ul ng-show="false">
                 <li class="mu_media">
                     <div class="mu_media_left">C</div>
                     <div class="mu_media_body">
                         <h4>comment title</h4>
-                        <span>2016-3-26 11:33</span>
-                        This is a comment content.
+                        <span>2016-3-26 11:33</span> This is a comment content.
                     </div>
                 </li>
                 <li class="mu_media">
                     <div class="mu_media_left">C</div>
                     <div class="mu_media_body">
                         <h4>comment title</h4>
-                        <span>2016-3-26 11:33</span>
-                        This is a comment content.This is a comment content.This is a comment content.This is a comment content.
+                        <span>2016-3-26 11:33</span> This is a comment content.This is a comment content.This is a comment
+                        content.This is a comment content.
                     </div>
                 </li>
                 <li class="mu_media">
                     <div class="mu_media_left">C</div>
                     <div class="mu_media_body">
                         <h4>comment title</h4>
-                        <span>2016-3-26 11:33</span>
-                        This is a comment content.
+                        <span>2016-3-26 11:33</span> This is a comment content.
                     </div>
                 </li>
             </ul>

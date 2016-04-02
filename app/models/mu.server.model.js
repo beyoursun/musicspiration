@@ -19,6 +19,10 @@ var MuSchema = new Schema({
     creator: {
         type: Schema.ObjectId,
         ref: 'User'
+    },
+    pv: {
+        type: Number,
+        default: 0
     }
 });
 

@@ -5,10 +5,12 @@ module.exports = function(app) {
     app.route('/api/mus')
         .post(users.requiresLogin, mus.create);
 
-	app.route('/api/mus/:muId')
-		.get(mus.read)
+    app.put('/api/mus/updatePv', mus.updatePv);
 
-	app.param('muId', mus.muById);
+    app.route('/api/mus/:muId')
+        .get(mus.read);
+
+    app.param('muId', mus.muById);
 
     app.get('/mus/down', mus.down);
 };

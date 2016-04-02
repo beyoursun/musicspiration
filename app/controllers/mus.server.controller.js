@@ -73,19 +73,43 @@ exports.create = function(req, res) {
 };
 
 // 通过id查找
-exports.muById = function (req, res, next, id) {
-	Mu.findById(id).populate('creator').exec(function (err, mu) {
-		if (err) return next(err);
-		if (!mu) return next(new Error('Failed to load mu ' + id));
+exports.muById = function(req, res, next, id) {
+    Mu.findById(id).populate('creator').exec(function(err, mu) {
+        if (err) return next(err);
+        if (!mu) return next(new Error('Failed to load mu ' + id));
 
-		req.mu = mu;
-		next();
-	});
+        req.mu = mu;
+        console.log(req.mu);
+        next();
+    });
 };
 
 // 查找
-exports.read = function (req, res) {
-	res.json(req.mu);
+exports.read = function(req, res) {
+    res.json(req.mu);
+};
+
+// 统计pv
+exports.updatePv = function(req, res) {
+    var id = req.body.id;
+    Mu.findById(id, function(err, mu) {
+        if (err) {
+            res.status(400).json({
+                message: getErrorMessage(err)
+            });
+        } else {
+            mu.pv++;
+            mu.save(function (err) {
+                if (err) {
+                    res.status(400).json({
+                        message: getErrorMessage(err)
+                    });
+                } else {
+                    res.json(mu);
+                }
+            });
+        }
+    })
 };
 
 // 下载

@@ -17,6 +17,10 @@ angular.module('mus').factory('Mus', ['$resource', function($resource) {
             },
             update: {
                 method: 'PUT'
+            },
+            updatePv: {
+                method: 'PUT',
+                url: '/api/mus/updatePv'
             }
         });
 }]);
