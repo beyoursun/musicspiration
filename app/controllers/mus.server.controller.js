@@ -1,22 +1,32 @@
-var formidable = require('formidable'),
-    fs = require('fs'),
+var fs = require('fs'),
+    formidable = require('formidable'),
     sizeOf = require('image-size'),
-    url = require('url');
+    objectAssign = require('object-assign'),
+    mongoose = require('mongoose'),
+    Mu = mongoose.model('Mu');
 
+var getErrorMessage = function(err) {
+    if (err.errors) {
+        for (var errName in err.errors) {
+            if (err.errors[errName].message) return err.errors[errName].message;
+        }
+    } else {
+        return 'Unknown server error';
+    }
+};
+
+// 创建
 exports.create = function(req, res) {
     var form = formidable.IncomingForm();
     form.encode = 'utf-8';
-    form.uploadDir = 'public/img/upload/';
+    form.uploadDir = 'public/upload/';
     form.keepExtensions = true;
-    form.maxFieldsSize = 2 * 1024 * 1024;
+    form.maxFieldsSize = 20 * 1024 * 1024; // 最大上传20M
 
     form.parse(req, function(err, fields, files) {
-        if (err) {
-            return res.json({ error: err });
-        }
+        if (err) return res.status(400).json({ message: getErrorMessage(err) });
 
-        console.log(fields);
-        console.log(files);
+        if (!files.cover) return res.status(400).json({ message: '请上传封面图' });
 
         var coverExtName = ''; // 后缀名
 
@@ -43,13 +53,42 @@ exports.create = function(req, res) {
         var newPath = files.cover.path.split('.')[0] + '@' + dimensions.width + 'x' + dimensions.height + '.' + coverExtName;
 
         fs.renameSync(files.cover.path, newPath);
-        // console.log(dimensions.width, dimensions.height);
-        // console.log('form');
-    });
 
-    res.json({ success: true });
+        // 存进数据库
+        var data = objectAssign({}, fields, {
+            cover: newPath.split('public')[1],
+            src: files.src.path.split('public')[1]
+        });
+
+        var mu = new Mu(data);
+        mu.creator = req.user;
+        mu.save(function(err) {
+            if (err) {
+                return res.status(400).json({ message: getErrorMessage(err) });
+            } else {
+                return res.json(mu);
+            }
+        });
+    });
 };
 
+// 通过id查找
+exports.muById = function (req, res, next, id) {
+	Mu.findById(id).populate('creator').exec(function (err, mu) {
+		if (err) return next(err);
+		if (!mu) return next(new Error('Failed to load mu ' + id));
+
+		req.mu = mu;
+		next();
+	});
+};
+
+// 查找
+exports.read = function (req, res) {
+	res.json(req.mu);
+};
+
+// 下载
 exports.down = function(req, res) {
     res.download(process.env.DIRNAME + '/public' + req.query.url);
 };

@@ -7,7 +7,7 @@
         <%= title %>
     </title>
     <link rel="stylesheet" href="/application.css">
-    <link rel="stylesheet" href="/mu/mu.css">
+    <link rel="stylesheet" href="/mus/mus.css">
     <link rel="stylesheet" href="/users/user.css">
 </head>
 
@@ -69,7 +69,7 @@
 
     <section ng-view></section>
 
-    <div class="main_search" ng-show="search.showed">
+    <div class="main_search" ng-class="{on: search.showed}">
         <textarea placeholder="search"></textarea>
         <a href="javascript:;" ng-click="search.toggle()"></a>
     </div>
@@ -98,11 +98,13 @@
     <script type="text/javascript" src="/users/config/users.client.routes.js"></script>
     <script type="text/javascript" src="/users/services/authentication.client.service.js"></script>
 
-    <script src="/mu/mu.client.module.js"></script>
-    <script src="/mu/mu.client.route.js"></script>
-    <script src="/mu/mu.client.controller.js"></script>
-    <script src="/mu/mu.client.directive.js"></script>
-    <script src="/mu/services/mus.client.service.js"></script>
+    <script src="/mus/mus.client.module.js"></script>
+    <script src="/mus/config/mus.client.routes.js"></script>
+    <script src="/mus/controllers/list-mu.client.controller.js"></script>
+    <script src="/mus/controllers/view-mu.client.controller.js"></script>
+    <script src="/mus/controllers/create-mu.client.controller.js"></script>
+    <script src="/mus/directives/gallery.client.directive.js"></script>
+    <script src="/mus/services/mus.client.service.js"></script>
 
     <script type="text/javascript" src="/application.js"></script>
 </body>

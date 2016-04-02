@@ -1,0 +1,87 @@
+<section class="main_section" ng-controller="ViewMuController" ng-init="findOne()">
+    <div class="mu">
+        <header class="mu_header">
+            <a href="javascript:;" class="mu_info link on">已采集 10</a>
+            <a href="javascript:;" class="mu_info">浏览 96</a>
+            <div class="mu_share" ng-include="'/mus/views/share-mu.client.view.html'"></div>
+            <a class="mu_info link right" target="_blank" ng-href="{{mu.from}}">来自 {{mu.from.split('/')[2]}}</a>
+        </header>
+        <div class="mu_content">
+            <video class="mu_vedio" controls ng-src="{{mu.src}}" ng-show="mu.type == 'video'"></video>
+            <img alt="" class="mu_cover" ng-src="{{mu.cover}}" ng-show="mu.type == 'audio'">
+            <a href="javascript:;" class="mu_btn" ng-show="mu.type == 'audio'" ng-class="{pause: player.playing, play: !player.playing}" ng-click="player.toggle()"></a>
+            <a href="#" class="mu_prev"></a>
+            <a href="#" class="mu_next"></a>
+        </div>
+        <div class="mu_more">
+            <h2 class="mu_title">{{mu.title}}</h2>
+            <a class="mu_download" title="下载" ng-href="/mus/down?url={{mu.src}}">下载</a>
+            <ul class="mu_tags">
+                <li class="mu_tag" ng-repeat="i in mu.tag.split('#')">
+                    <a href="#">#{{i}}#</a>
+                </li>
+            </ul>
+        </div>
+        <div class="mu_comment">
+            <div class="mu_comment_box">
+                <textarea rows="5" placeholder="我也要说"></textarea>
+                <a href="javascript">评论</a>
+            </div>
+            <div class="mu_sofa">
+                <i class="iconfont">&#xe602;</i>
+                快来抢占沙发吧~
+            </div>
+            <ul ng-show="false">
+                <li class="mu_media">
+                    <div class="mu_media_left">C</div>
+                    <div class="mu_media_body">
+                        <h4>comment title</h4>
+                        <span>2016-3-26 11:33</span>
+                        This is a comment content.
+                    </div>
+                </li>
+                <li class="mu_media">
+                    <div class="mu_media_left">C</div>
+                    <div class="mu_media_body">
+                        <h4>comment title</h4>
+                        <span>2016-3-26 11:33</span>
+                        This is a comment content.This is a comment content.This is a comment content.This is a comment content.
+                    </div>
+                </li>
+                <li class="mu_media">
+                    <div class="mu_media_left">C</div>
+                    <div class="mu_media_body">
+                        <h4>comment title</h4>
+                        <span>2016-3-26 11:33</span>
+                        This is a comment content.
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="muauthor">
+        <div class="muauthor_content" ng-class="{scrolling: author.scrolling}">
+            <div class="muauthor_info">
+                <div class="muauthor_avatar">M</div>
+                <div class="muauthor_right">
+                    <h2>Maan Ali</h2>
+                    <p class="muauthor_time">发表于 2016-3-17 14：00</p>
+                </div>
+            </div>
+            <div>
+                <ul class="muauthor_intros">
+                    <li class="muauthor_intro">
+                        <p class="muauthor_intro_num">176</p>
+                        <p class="muauthor_intro_txt">采集</p>
+                    </li>
+                    <li class="muauthor_intro">
+                        <p class="muauthor_intro_num">102</p>
+                        <p class="muauthor_intro_txt">粉丝</p>
+                    </li>
+                </ul>
+                <a href="javascript:;" class="muauthor_follow on">已关注</a>
+            </div>
+        </div>
+    </div>
+    <audio class="muaudio" id="mu-audio" ng-src="{{mu.src}}"></audio>
+</section>

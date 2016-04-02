@@ -8,8 +8,9 @@ var MuSchema = new Schema({
         required: 'Title can not be blank'
     },
     cover: String,
+    type: String,
     src: String,
-    tags: [String],
+    tag: String,
     from: String,
     created: {
         type: Date,

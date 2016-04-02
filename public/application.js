@@ -2,7 +2,7 @@
 var mainApplicationModuleName = 'musicspiration';
 
 // var mainApplicationModule = angular.module(mainApplicationModuleName, ['ngResource', 'ngRoute', 'users', 'example', 'articles']);
-var mainApplicationModule = angular.module(mainApplicationModuleName, ['ngResource', 'ngRoute', 'users', 'mu']);
+var mainApplicationModule = angular.module(mainApplicationModuleName, ['ngResource', 'ngRoute', 'users', 'mus']);
 
 mainApplicationModule.config(['$locationProvider', function ($locationProvider) {
 	$locationProvider.hashPrefix('!');
@@ -11,6 +11,11 @@ mainApplicationModule.config(['$locationProvider', function ($locationProvider) 
 angular.element(document).ready(function () {
 	angular.bootstrap(document, [mainApplicationModuleName]);
 });
+
+// config
+angular.module(mainApplicationModuleName).config(['$compileProvider', function ($compileProvider) {
+    $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|local|data|blob):/);
+}]);
 
 angular.module(mainApplicationModuleName).controller('appController', ['$scope', '$timeout', 'Authentication', function ($scope, $timeout, Authentication) {
     // 是否登录
