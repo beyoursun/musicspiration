@@ -74,13 +74,14 @@ exports.create = function(req, res) {
 
 // 通过id查找
 exports.muById = function(req, res, next, id) {
+    if (!id) var id = req.body.id;
     Mu.findById(id).populate('creator').exec(function(err, mu) {
         if (err) return next(err);
         if (!mu) return next(new Error('Failed to load mu ' + id));
 
         req.mu = mu;
         console.log(req.mu);
-        next();
+        // next();
     });
 };
 
@@ -110,6 +111,18 @@ exports.updatePv = function(req, res) {
             });
         }
     })
+};
+
+/**
+ * @func updateLike
+ * @desc 当前用户采集当前音乐
+ * @param {object} req - 请求对象
+ * @param {object} res - 响应对象
+ */
+exports.updateLike = function(req, res) {
+    console.log('update like');
+    console.log(req.user);
+    console.log(req.mu);
 };
 
 // 下载

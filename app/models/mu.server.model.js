@@ -23,6 +23,10 @@ var MuSchema = new Schema({
     pv: {
         type: Number,
         default: 0
+    },
+    like: {
+        type: Array,
+        default: []
     }
 });
 

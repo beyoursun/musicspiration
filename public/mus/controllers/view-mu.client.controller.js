@@ -1,4 +1,6 @@
-angular.module('mus').controller('ViewMuController', ['$scope', '$routeParams', 'Mus', function($scope, $routeParams, Mus) {
+angular.module('mus').controller('ViewMuController', ['$scope', '$routeParams', 'Authentication', 'Mus', function($scope, $routeParams, Authentication, Mus) {
+    $scope.authentication = Authentication; // 登录相关
+    
     // mu
     $scope.player = {};
     $scope.player.playing = false;
@@ -16,12 +18,27 @@ angular.module('mus').controller('ViewMuController', ['$scope', '$routeParams', 
     $scope.author = {};
     $scope.author.scrolling = false;
 
+    /**
+     * @func findOne
+     * @desc 获取当前音乐
+     */
     $scope.findOne = function() {
-        $scope.mu = Mus.get({
+        Mus.get({
             muId: $routeParams.muId
+        }, function(response) {
+            $scope.mu = response;
+            if ($scope.authentication.user && $scope.mu.like.indexOf($scope.authentication.user._id) >= 0) {
+                $scope.mu.liked = true;
+            } else {
+                $scope.mu.liked = false;
+            }
         });
     };
 
+    /**
+     * @func updatePv
+     * @desc pv统计
+     */
     $scope.updatePv = function() {
         Mus.updatePv({
             id: $routeParams.muId
@@ -29,6 +46,16 @@ angular.module('mus').controller('ViewMuController', ['$scope', '$routeParams', 
             $scope.mu.pv++;
         }, function(response) {
             console.log(response);
+        });
+    };
+
+    /**
+     * @func toggleLike
+     * @desc 切换采集状态
+     */
+    $scope.toggleLike = function() {
+        Mus.updateLike({
+            id: $routeParams.muId
         });
     };
 
