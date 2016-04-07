@@ -27,6 +27,7 @@ angular.module('mus').controller('ViewMuController', ['$scope', '$routeParams', 
             muId: $routeParams.muId
         }, function(response) {
             $scope.mu = response;
+            $scope.updatePv();
             if ($scope.authentication.user && $scope.mu.like.indexOf($scope.authentication.user._id) >= 0) {
                 $scope.mu.liked = true;
             } else {
@@ -54,9 +55,19 @@ angular.module('mus').controller('ViewMuController', ['$scope', '$routeParams', 
      * @desc 切换采集状态
      */
     $scope.toggleLike = function() {
-        Mus.updateLike({
-            id: $routeParams.muId
-        });
+        if ($scope.authentication.user) {
+            Mus.updateLike({
+                id: $routeParams.muId
+            }, function(response) {
+                console.log(response);
+            }, function(response) {
+                console.log(response);
+            });
+        } else {
+            if (confirm('采集需要登录')) {
+                location.href = '/signin';
+            }
+        }
     };
 
     // 滚动时作者栏样式变更

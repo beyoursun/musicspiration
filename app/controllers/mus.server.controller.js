@@ -72,16 +72,39 @@ exports.create = function(req, res) {
     });
 };
 
-// 通过id查找
+/**
+ * @func muById
+ * @desc 通过id来查找，用于匹配id路由的中间件
+ * @param {object} req - 请求对象
+ * @param {object} res - 响应对象
+ * @param {object} next - 回调函数
+ * @param {string} id - 音乐的id
+ */
 exports.muById = function(req, res, next, id) {
-    if (!id) var id = req.body.id;
     Mu.findById(id).populate('creator').exec(function(err, mu) {
         if (err) return next(err);
         if (!mu) return next(new Error('Failed to load mu ' + id));
 
         req.mu = mu;
-        console.log(req.mu);
-        // next();
+        next();
+    });
+};
+
+/**
+ * @func muByReqId
+ * @desc 通过id来查找，用于请求中包含id的中间件
+ * @param {object} req - 请求对象
+ * @param {object} res - 响应对象
+ * @param {object} next - 回调函数
+ */
+exports.muByReqId = function(req, res, next) {
+    var id = req.body.id;
+    Mu.findById(id).populate('creator').exec(function(err, mu) {
+        if (err) return next(err);
+        if (!mu) return next(new Error('加载音乐失败 ' + id));
+
+        req.mu = mu;
+        next();
     });
 };
 
@@ -100,7 +123,7 @@ exports.updatePv = function(req, res) {
             });
         } else {
             mu.pv++;
-            mu.save(function (err) {
+            mu.save(function(err) {
                 if (err) {
                     res.status(400).json({
                         message: getErrorMessage(err)
@@ -120,9 +143,25 @@ exports.updatePv = function(req, res) {
  * @param {object} res - 响应对象
  */
 exports.updateLike = function(req, res) {
-    console.log('update like');
-    console.log(req.user);
-    console.log(req.mu);
+    var user = req.user;
+    var mu = req.mu;
+    var index = mu.like.indexOf(user._id);
+    
+    if (index > 0) {
+        mu.like.splice(index, 1);
+    } else {
+        mu.like.push(user._id);
+    }
+    
+    mu.save(function(err) {
+        if (err) {
+            res.status(400).json({
+                message: getErrorMessage(err)
+            });
+        } else {
+            res.json({ liked: index > 0 ? false : true });
+        }
+    });
 };
 
 // 下载

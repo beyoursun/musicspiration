@@ -1,4 +1,4 @@
-<section class="main_section" ng-controller="ViewMuController" ng-init="findOne();updatePv()">
+<section class="main_section" ng-controller="ViewMuController" ng-init="findOne()">
     <div class="mu">
         <header class="mu_header">
             <a href="javascript:;" class="mu_info link" ng-class="{on: mu.liked}" ng-click="toggleLike()">{{(mu.liked ? '已采集' : '采集') + (mu.like > 0 ? ' ' + mu.like : '')}}</a>
