@@ -100,8 +100,17 @@ exports.muById = function(req, res, next, id) {
 exports.muByReqId = function(req, res, next) {
     var id = req.body.id;
     Mu.findById(id).populate('creator').exec(function(err, mu) {
-        if (err) return next(err);
-        if (!mu) return next(new Error('加载音乐失败 ' + id));
+        if (err) {
+            return res.status(400).json({
+                message: getErrorMessage(err)
+            });
+        }
+        
+        if (!mu) {
+            return res.status(400).json({
+                message: '加载音乐失败 ' + id
+            });
+        }
 
         req.mu = mu;
         next();
@@ -147,11 +156,15 @@ exports.updateLike = function(req, res) {
     var mu = req.mu;
     var index = mu.like.indexOf(user._id);
     
+    console.log(mu.like);
+    
     if (index > 0) {
         mu.like.splice(index, 1);
     } else {
         mu.like.push(user._id);
     }
+    
+    console.log(mu.like);
     
     mu.save(function(err) {
         if (err) {

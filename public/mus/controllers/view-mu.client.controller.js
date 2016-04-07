@@ -59,7 +59,7 @@ angular.module('mus').controller('ViewMuController', ['$scope', '$routeParams', 
             Mus.updateLike({
                 id: $routeParams.muId
             }, function(response) {
-                console.log(response);
+                $scope.mu.liked = response.liked;
             }, function(response) {
                 console.log(response);
             });
