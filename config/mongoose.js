@@ -7,6 +7,7 @@ module.exports = function() {
   require('../app/models/user.server.model');
   require('../app/models/mu.server.model');
   require('../app/models/article.server.model');
+  require('../app/models/comment.server.model');
 
-  return db
+  return db;
 };
