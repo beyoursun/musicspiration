@@ -158,10 +158,10 @@ exports.updateLike = function(req, res) {
     
     console.log(mu.like);
     
-    if (index > 0) {
-        mu.like.splice(index, 1);
-    } else {
+    if (index < 0) {
         mu.like.push(user._id);
+    } else {
+        mu.like.splice(index, 1);
     }
     
     console.log(mu.like);
@@ -172,7 +172,7 @@ exports.updateLike = function(req, res) {
                 message: getErrorMessage(err)
             });
         } else {
-            res.json({ liked: index > 0 ? false : true });
+            res.json({ liked: index < 0 ? true : false });
         }
     });
 };
